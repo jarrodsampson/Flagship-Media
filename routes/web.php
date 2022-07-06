@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\MovieController;
 
@@ -15,9 +16,12 @@ use App\Http\Controllers\MovieController;
 |
 */
 
+/* redirect to login */
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
+
+Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
 Route::get('/greeting', function () {
     return [
@@ -64,3 +68,7 @@ Route::resource('movies', MovieController::class);
 Route::fallback(function () {
     return 'Nothing Like that found...';
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

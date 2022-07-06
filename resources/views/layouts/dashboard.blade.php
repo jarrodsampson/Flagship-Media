@@ -38,6 +38,31 @@
             <div class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
             </div>
             <!-- Navbar-->
+            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img class="avatar-image" src="/uploads/avatars/{{ Auth::user()->avatar }}" alt="user avatar" />
+                    	@auth
+                    	&nbsp;{{ Auth::user()->name }}
+                    	@else
+                    	&nbsp;
+                    	@endauth
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li>
+                        	<a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
             
         </nav>
 
@@ -47,7 +72,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="">
+                            <a class="nav-link" href="/dashboard">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
@@ -87,7 +112,7 @@
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
-                        
+                        &nbsp;{{ Auth::user()->name }}
                     </div>
                 </nav>
             </div>
@@ -110,8 +135,7 @@
             </div>
         </div>
     </div>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <!--<script src="js/scripts.js"></script>-->
+	    <!--<script src="js/scripts.js"></script>-->
         <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <script src="{{ asset('demo/chart-area-demo.js') }}"></script>   
         <script src="{{ asset('demo/chart-bar-demo.js') }}"></script> -->
