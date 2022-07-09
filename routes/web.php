@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +23,19 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+// Auth::routes();
+// If Forcing Email Verification for login
+Auth::routes(['verify' => true]);
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::prefix('dashboard')->group( function () {
+        // resource that supports all methods
+        Route::resource('movies', MovieController::class);
+        Route::resource('profile', ProfileController::class);
+    });
+});
 
 Route::get('/greeting', function () {
     return [
@@ -61,14 +75,9 @@ Route::controller(OrdersController::class)->group(function () {
     Route::post('/orders', 'store');
 });
 
-// resource that supports all methods
-Route::resource('movies', MovieController::class);
-
 // if no other matching routes
 Route::fallback(function () {
     return 'Nothing Like that found...';
 });
-
-Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

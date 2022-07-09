@@ -50,6 +50,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li>
+                            <a class="dropdown-item" href="{{ route('profile.index') }}">Your Profile</a>
                         	<a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -76,9 +77,9 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
-                            <a class="nav-link" href="">
+                            <a class="nav-link" href="/dashboard/movies">
                                 <div class="sb-nav-link-icon"><i class="fas fa-user-alt"></i></div>
-                                Clients
+                                Movies
                             </a>
                             <a class="nav-link" href="">
                                 <div class="sb-nav-link-icon"><i class="fas fa-cog"></i></div>
