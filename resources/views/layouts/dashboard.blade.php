@@ -50,7 +50,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li>
-                            <a class="dropdown-item" href="{{ route('profile.index') }}">Your Profile</a>
+                            <a class="dropdown-item" href="{{ route('profile.index') }}">Account</a>
                         	<a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
