@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,8 +80,10 @@ Route::controller(OrdersController::class)->group(function () {
 });
 
 // if no other matching routes
-Route::fallback(function () {
+/*Route::fallback(function () {
     return 'Nothing Like that found...';
-});
+});*/
+Route::any('{catchall}', [PageController::class, 'notfound'])->where('catchall', '.*');
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
