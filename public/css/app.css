@@ -10813,3 +10813,7 @@ table form {
   width: auto;
   display: inline-block;
 }
+
+.page-wrap {
+  min-height: 100vh;
+}
