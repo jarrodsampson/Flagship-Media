@@ -10806,6 +10806,7 @@ body {
 .avatar-image {
   max-width: 40px;
   border-radius: 50%;
+  height: 40px;
 }
 
 table form {

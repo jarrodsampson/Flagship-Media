@@ -37,6 +37,9 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
+Route::view('/terms-conditions', 'legal.terms');
+Route::view('/privacy-policy', 'legal.policy');
+
 Route::get('/greeting', function () {
     return [
         'title' => 'Hello World'
