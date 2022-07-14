@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\PageController;
 
 /*
@@ -35,6 +36,9 @@ Route::middleware(['auth'])->group(function () {
         // resource that supports all methods
         Route::resource('movies', MovieController::class);
         Route::resource('profile', ProfileController::class);
+        Route::resource('user', UserController::class);    
+        Route::get('change-password', [UserController::class, 'changePassword'])->name('change.password');
+        Route::post('change-password', [UserController::class, 'changePasswordStore'])->name('change.store');
     });
 });
 
