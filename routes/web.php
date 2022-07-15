@@ -9,6 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\RolePermissionAssignController;
+use App\Http\Controllers\ActivityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('change-password', [UserController::class, 'changePassword'])->name('change.password');
         Route::post('change-password', [UserController::class, 'changePasswordStore'])->name('change.store');
         Route::resource('roles-permissions', RolePermissionAssignController::class);
+        Route::resource('activity', ActivityController::class);
     });
 });
 
