@@ -58,7 +58,7 @@
                     </div>
                   </div>
 
-                  {{-- <div class="d-flex flex-row align-items-center mb-4">
+                  <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
                       <select name="role">
@@ -69,7 +69,7 @@
                       </select>
                       <label class="form-label" for="role">Select Role</label>
                     </div>
-                  </div> --}}
+                  </div>
 
                   <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                     <button type="submit" class="btn btn-primary btn-lg">Create</button>&nbsp;
