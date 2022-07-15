@@ -63,12 +63,14 @@ class UserController extends Controller
         $user = User::create($validatedData);
         //$profile = UsersProfile::create(['user_id' => $user->id]);
         //$settings = UsersSetting::create(['user_id' => $user->id]);
-        //activity()->log('Created New User');
 
         // if using permissions
         // assign user a role
         $user->assignRole($request->role);
-        //activity()->log('Assigned new user a role: ' . $request->role);
+
+        // if using activity logging
+        $this->activityLogger('Created New User: ' . $user->email);
+        $this->activityLogger('Assigned user ' . $user->email . ' a role: ' . $request->role);
 
         // send verify email
         $user->sendEmailVerificationNotification();
@@ -148,6 +150,9 @@ class UserController extends Controller
         //$user->syncRoles([]);
         // assign user a role
         $user->assignRole($request->role);
+
+        // if using activity logging
+        $this->activityLogger('Updated User: '. $user->email);
        
         return redirect('/dashboard/user')->with('success', 'User Successfully Updated.');
     }
@@ -174,7 +179,8 @@ class UserController extends Controller
         //DB::table('users_profiles')->where('user_id', $userId)->delete();
         //DB::table('users_settings')->where('user_id', $userId)->delete();
 
-        //activity()->log('Deleted User');
+        // if using activity logging
+        $this->activityLogger('Deleted User: ' . $user->email);
         return redirect('/dashboard/user')->with('success', $user->name . ' was removed.');
     }
 
@@ -217,5 +223,10 @@ class UserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+    }
+
+    protected function activityLogger(string $text)
+    {
+        return activity()->log($text);
     }
 }
