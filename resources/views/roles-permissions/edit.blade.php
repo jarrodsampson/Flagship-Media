@@ -78,7 +78,7 @@
 				          @foreach($users as $user)
 				          <tr>
 				              <td>{{$user->name}}</td>
-				              <td><a href="{{ route('users.edit', $user->id)}}" class="btn btn-primary">View</a></td>
+				              <td><a href="{{ route('user.edit', $user->id)}}" class="btn btn-primary">View</a></td>
 				          </tr>
 				          @endforeach
 				      </tbody>
