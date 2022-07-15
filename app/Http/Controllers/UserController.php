@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-//use Spatie\Permission\Models\Role;
-//use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use Spatie\Activitylog\Models\Activity;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -41,9 +41,11 @@ class UserController extends Controller
      */
     public function create()
     {
-        //$roles = \Spatie\Permission\Models\Role::all();
-        //return view('users.create', compact('roles'));
-        return view('users.create');
+        // if using permissions
+        $roles = Role::all();
+        return view('users.create', compact('roles'));
+        // no permissions
+        //return view('users.create');
     }
 
     /**
@@ -63,8 +65,9 @@ class UserController extends Controller
         //$settings = UsersSetting::create(['user_id' => $user->id]);
         //activity()->log('Created New User');
 
+        // if using permissions
         // assign user a role
-        //$user->assignRole($request->role);
+        $user->assignRole($request->role);
         //activity()->log('Assigned new user a role: ' . $request->role);
 
         // send verify email
@@ -92,13 +95,15 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        // if using permissions
         $user = User::findOrFail($id);
-        //$roles = \Spatie\Permission\Models\Role::all();
+        $roles = Role::all();
         // get user roles 
-        //$userRoles = $user->getRoleNames();
+        $userRoles = $user->getRoleNames();
 
-        //return view('users.edit', compact('user', 'roles', 'userRoles'));
-        return view('users.edit', compact('user'));
+        return view('users.edit', compact('user', 'roles', 'userRoles'));
+        // no permissions
+        //return view('users.edit', compact('user'));
     }
 
     /**
@@ -142,7 +147,7 @@ class UserController extends Controller
         // remove all user permissions
         //$user->syncRoles([]);
         // assign user a role
-        //$user->assignRole($request->role);
+        $user->assignRole($request->role);
        
         return redirect('/dashboard/user')->with('success', 'User Successfully Updated.');
     }

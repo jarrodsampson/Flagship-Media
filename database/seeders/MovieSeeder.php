@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Movie;
 
-class MovieTableSeeder extends Seeder
+class MovieSeeder extends Seeder
 {
     /**
      * Run the database seeds.
