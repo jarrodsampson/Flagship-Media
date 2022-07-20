@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,12 +23,14 @@
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous">
+    </script>
     <script src="https://cdn.ckeditor.com/4.18.0/full/ckeditor.js"></script>
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/3.4.0/js/bootstrap-colorpicker.min.js" integrity="sha512-94dgCw8xWrVcgkmOc2fwKjO4dqy/X3q7IjFru6MHJKeaAzCvhkVtOS6S+co+RbcZvvPBngLzuVMApmxkuWZGwQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
 </head>
+
 <body class="sb-nav-fixed">
-    <div id="app"> 
+    <div id="app">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="/dashboard">{{ config('app.name', 'Sample') }}</a>
@@ -41,29 +44,28 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img class="avatar-image" src="/uploads/avatars/{{ Auth::user()->avatar }}" alt="user avatar" />
-                    	@auth
-                    	&nbsp;{{ Auth::user()->name }}
-                    	@else
-                    	&nbsp;
-                    	@endauth
+                        @auth
+                        &nbsp;{{ Auth::user()->name }}
+                        @else
+                        &nbsp;
+                        @endauth
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li>
                             <a class="dropdown-item" href="{{ route('profile.index') }}">Account</a>
-                        	<a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                                {{ __('Logout') }}
+                            </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
                         </li>
                     </ul>
                 </li>
             </ul>
-            
+
         </nav>
 
         <div id="layoutSidenav">
@@ -104,8 +106,8 @@
                             </a>
                             <div class="collapse" id="collapseUsers" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="{{ route('activity.index') }}">Activity</a> 
-                                    <a class="nav-link" href="{{ route('user.index') }}">All Users</a> 
+                                    <a class="nav-link" href="{{ route('activity.index') }}">Activity</a>
+                                    <a class="nav-link" href="{{ route('user.index') }}">All Users</a>
                                     <a class="nav-link" href="{{ route('user.create') }}">Create</a>
                                 </nav>
                             </div>
@@ -116,7 +118,7 @@
                             </a>
                             <div class="collapse" id="collapseRolesPermissions" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="{{ route('roles-permissions.index') }}">List</a> 
+                                    <a class="nav-link" href="{{ route('roles-permissions.index') }}">List</a>
                                     <a class="nav-link" href="{{ route('roles-permissions.create') }}">Create</a>
                                 </nav>
                             </div>
@@ -130,7 +132,7 @@
             </div>
             <div id="layoutSidenav_content">
                 <main>
-                	@yield('content')
+                    @yield('content')
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
@@ -147,31 +149,29 @@
             </div>
         </div>
     </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="{{ asset('demo/chart-area-demo.js') }}"></script>   
-        <script src="{{ asset('demo/chart-bar-demo.js') }}"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
-        <link href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css" rel="stylesheet" />
-        <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-        <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
-        <script>
-            $('#datatablesSimple').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
-                ]
-            });
-        </script>
-        <!--<script>
-            $(function () {
-              $('#color_scheme_headline').colorpicker();
-            });
-        </script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css" rel="stylesheet" />
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+    <script>
+        $('.datatablesSimple').DataTable({
+            dom: 'lfrtiBp',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ],
+            perPageSelect: [25, 50, 75, 150],
+            'language': {
+                'lengthMenu': '_MENU_'
+            },
+            pagingType: 'full_numbers',
+        });
+    </script>
 </body>
+
 </html>

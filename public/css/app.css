@@ -10817,3 +10817,8 @@ table form {
 .page-wrap {
   min-height: 100vh;
 }
+
+.dt-buttons {
+  margin-top: 5px;
+  margin-left: 10px;
+}
